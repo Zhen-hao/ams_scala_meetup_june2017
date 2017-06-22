@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Type-level Talk</title>
+  <meta name="description" content="">
+  <meta name="author" content="Zhenhao Li">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/2.3.1/amelia/bootstrap.min.css">
+<link rel="stylesheet" href="./frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="./frameworks/revealjs/css/theme/sky.css" id="theme">
+  <link rel="stylesheet" href="./highlighters/highlight.js/css/atom-one-dark.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  <link rel="stylesheet" href = "assets/css/slidify-reveal.css">
+
+</head>
+<body>
+  
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  <h2>what are type classes all about</h2>
+  <p><a href="https://www.linkedin.com/in/zhenhaoli/">Zhenhao Li</a>
+<a href="http://www.connecterra.io/"><div><img width = '480px'   src='connecterra_black-01.png'></div></a> </p>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <aside class='notes'>
+    <p>This is the title page.</p>
+
+  </aside>
+</section>
+<section class='' data-state='' id='slide-2'>
+  <h3>About Me</h3>
+  <p><section></p>
+
+</section>
+<section class='' data-state='' id='slide-3'>
+  
+  <p>Data scientist and engineer at Connecterra since Feb 2017</p>
+
+</section>
+<section class='' data-state='' id='slide-4'>
+  
+  <p>1.5 year in consulting at Accenture</p>
+
+</section>
+<section class='' data-state='' id='slide-5'>
+  
+  <p>M.Sc. in logic and PhD-in-progress in mathematical logic </p>
+
+</section>
+<section class='' data-state='' id='slide-6'>
+  
+  <p>B.Eng. in Software Engineer from China </p>
+
+</section>
+<section class='' data-state='' id='slide-7'>
+  
+  <p>Two years experience with Scala</p>
+
+<p></section></p>
+
+</section>
+<section class='' data-state='' id='slide-8'>
+  <h3><a href="http://www.connecterra.io/"><img src='connecterra_black-01.png'></a></h3>
+  <p><section></p>
+
+</section>
+<section class='' data-state='' id='slide-9'>
+  
+  <p>Insight into the planet using data</p>
+
+</section>
+<section class='' data-state='' id='slide-10'>
+  
+  <p>Better agriculture through technology</p>
+
+</section>
+<section class='' data-state='' id='slide-11'>
+  
+  <p><a href="#/2" class="image">
+  <img width = '180px' src="ida_RGB_colour-01.png">
+</a> 
+the dairy farming assistant</p>
+
+<p></section></p>
+
+</section>
+<section>
+   <section class='' data-state=''>
+    <h3>Why type classes are hard to understand</h3>
+    <ul class = "build incremental">
+<li>No backing formal theory</li>
+<li>Not from Scala originally</li>
+<li>No direct syntax support in Scala </li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state=''>
+    <h3>What are type classes</h3>
+    <blockquote>
+<p>A typeclass defines some behavior (like comparing for equality, comparing for ordering, enumeration) and then types that can behave in that way are made instances of that typeclass. The behavior of typeclasses is achieved by defining functions or just type declarations that we then implement. So when we say that a type is an instance of a typeclass, we mean that we can use the functions that the typeclass defines with that type.</p>
+</blockquote>
+
+<p>Miran Lipovaca
+<a href="http://learnyouahaskell.com/making-our-own-types-and-typeclasses#typeclasses-102">Learn You a Haskell for Great Good! </a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3>Example</h3>
+
+<pre><code class="haskell">class Functor f where  
+    fmap :: (a -&gt; b) -&gt; f a -&gt; f b
+</code></pre>
+
+<p>f is a type of kind \[\begin{aligned}  * \rightarrow * \end{aligned}\]</p>
+
+<p>a and b are types of kind \[ * \]</p>
+
+<pre><code class="haskell">instance Functor Maybe where  
+    fmap f (Just x) = Just (f x)  
+    fmap f Nothing = Nothing
+
+</code></pre>
+
+<pre><code class="haskell">fmap (*2) (Just 200)
+-- Just 400
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3>Just enough category theory</h3>
+
+<p><a href="#" class="image">
+  <img src="category.png">
+</a> </p>
+
+<p><small><a href="http://yogsototh.github.io/Category-Theory-Presentation/categories/img/mp/functor-morphism.png">http://yogsototh.github.io/Category-Theory-Presentation/categories/img/mp/functor-morphism.png</a></small></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state=''>
+    <h3>Type system of Scala</h3>
+    <p><a href="#" class="image">
+  <img src="higher-kinds.png">
+</a> </p>
+
+<p><a href="https://lirias.kuleuven.be/bitstream/123456789/186940/4/tcpoly.pdf">Generics of a Higher Kind</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3>Functor type class in Scala</h3>
+
+<pre><code class="scala">trait Functor[F[_]] {
+    def def lift[A, B](f: A =&gt; B): F[A] =&gt; F[B]
+}
+</code></pre>
+
+<pre><code class="scala">// implementation for Option
+implicit val functorForOption: Functor[Option] = new Functor[Option] {
+    def lift[A, B](f: A =&gt; B): Option[A] =&gt; Option[B] = {
+        case None    =&gt; None
+        case Some(a) =&gt; Some(f(a))
+    }
+}
+</code></pre>
+
+<pre><code class="scala">implicitly[Functor[Option]].lift((n: Int) =&gt; n * 2)(Some(200))
+//res0: Option[Int] = Some(400)
+</code></pre>
+
+<p><small><a href="http://typelevel.org/cats/typeclasses/functor.html">http://typelevel.org/cats/typeclasses/functor.html</a></small></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3>Better Syntax?</h3>
+
+<p>Add </p>
+
+<pre><code class="scala">object Functor{
+    implicit def apply[F[_]](implicit functor: Functor[F]): Functor[F] 
+                = functor
+}
+</code></pre>
+
+<p>So we can write</p>
+
+<pre><code class="scala">Functor[Option].lift((n: Int) =&gt; n * 2)(Some(200))
+//res1: Option[Int] = Some(400)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state=''>
+    <h4>But can we just write this?</h4>
+    <pre><code class="scala">Some(200) fmap ((n: Int) =&gt; n * 2)
+//res3: Option[Int] = Some(400)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3>here is the trick</h3>
+
+<pre><code class="scala">trait FunctorSyntax[F[_], A]{
+    def fmap[B](f: A =&gt; B): F[B]
+}
+
+object FunctorSyntax{
+    implicit def apply[F[_], A](fa: F[A])(implicit functor: Functor[F])
+        : FunctorSyntax[F, A] = new FunctorSyntax[F, A]{
+            def fmap[B](f: A =&gt; B): F[B] = functor.lift(f)(fa)
+        }
+}
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3>We end up with</h3>
+
+<pre><code class="scala">Some(200).asInstanceOf[Option[Int]] fmap ((n: Int) =&gt; n * 2)
+//res3: Option[Int] = Some(400)
+
+// or
+
+Some(200).map(identity) fmap ((n: Int) =&gt; n * 2) // or use map(a =&gt; a) 
+//res4: Option[Int] = Some(400)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state=''>
+    <h3>Summary</h3>
+    <ul class = "build incremental">
+<li>Type classes are about polymorphism.</li>
+<li>Focus on behaviours (functions!) when writing your type classes<br></li>
+<li>Type parameters in a type class trait are &quot;higher kind variables&quot; </li>
+<li>Users can substitute those variables with new types or type constructors, 
+only if they provide the implementation of the type class.</li>
+<li>Very powerful when used with type level recursions; automatic generations of instances.</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h1>Thank you!</h1>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+    </div>
+  </div>
+</body>
+  <script src="./frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="./frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'sky', 
+    transition: Reveal.getQueryHash().transition || 'concave', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: './frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: './frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: './frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: './frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script> -->
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="./widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="./highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>
